@@ -7,22 +7,10 @@ pub struct Loc {
 }
 
 impl Loc {
+    // Check each direction and add if safe.
     pub fn find_all_routes(self) -> Vec<Loc> {
         let mut open_routes = Vec::with_capacity(4);
 
-        // If we are at least 2 away from an absticle, 
-        // add all directions and return.
-        if self.is_clear() {
-            open_routes.push(self.right());
-            open_routes.push(self.left());
-            open_routes.push(self.up());
-            open_routes.push(self.down());
-
-            return open_routes;
-        }
-
-        // If we didn't return, we are only one space
-        // away from an obsticle, check each one.
         if self.right().is_safe() {
             open_routes.push(self.right());
         }
@@ -39,40 +27,40 @@ impl Loc {
         return open_routes;
     }
 
-
+    // Return the location 1 to the right
     fn right(&self) -> Loc {
-        return Loc{
-            x: self.x + 1, 
-            y: self.y
+        return Loc {
+            x: self.x + 1,
+            y: self.y,
         };
-    }
-    fn left(&self) -> Loc {
-        return Loc{
-            x: self.x - 1, 
-            y: self.y
-        };
-    }
-    fn up(&self) -> Loc {
-        return Loc{
-            x: self.x, 
-            y: self.y + 1
-        };
-    }
-    fn down(&self) -> Loc {
-        return Loc{
-            x: self.x, 
-            y: self.y - 1
-        };
-    }
-    
-    // // If we are 
-    fn is_clear(&self) -> bool {
-        let mut sum = 0;
-        sum += sum_num_digits(self.x.abs());
-        sum += sum_num_digits(self.y.abs());
-        return sum < OBSTICLE_VALUE - 2;
     }
 
+    // Return the location 1 to the left
+    fn left(&self) -> Loc {
+        return Loc {
+            x: self.x - 1,
+            y: self.y,
+        };
+    }
+
+    // Return the location 1 up
+    fn up(&self) -> Loc {
+        return Loc {
+            x: self.x,
+            y: self.y + 1,
+        };
+    }
+
+    // Return the location 1 down
+    fn down(&self) -> Loc {
+        return Loc {
+            x: self.x,
+            y: self.y - 1,
+        };
+    }
+
+    // Compare the sum of the coordinates digits to
+    // the OBSTICLE_VALUE which denotes dangerous mines
     fn is_safe(&self) -> bool {
         let mut sum = 0;
         sum += sum_num_digits(self.x.abs());
@@ -81,12 +69,13 @@ impl Loc {
     }
 }
 
+// Take a number and return the sum of its digits
 fn sum_num_digits(mut num: i64) -> i64 {
     let mut sum = 0;
-    while num > 0 {    
-        let m = num % 10;    
-        sum = sum + m;    
-        num = num / 10;    
+    while num > 0 {
+        let m = num % 10;
+        sum = sum + m;
+        num = num / 10;
     }
     return sum;
 }
