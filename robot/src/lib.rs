@@ -1,7 +1,9 @@
 pub mod loc;
 pub mod robot;
 
-/// Take a number and return the sum of its digits
+/// Search for all safe to explore tiles 
+/// and return the total area
+/// 
 /// # Examples
 ///
 /// ```

@@ -20,6 +20,22 @@ pub struct Robot {
 }
 
 impl Robot {
+    /// Search for all safe to explore tiles 
+    /// and return the total area
+    /// 
+    /// # Examples
+    ///
+    /// ```
+    /// use robot::robot::Robot;
+    /// let size = robot::robot::Robot {
+    ///     starting_x: 0,
+    ///     starting_y: 0,
+    ///     ..Default::default()
+    /// }
+    /// .explore_area_size();
+    /// 
+    /// assert_eq!(592597, size);
+    /// ```
     pub fn explore_area_size(&mut self) -> i64 {
         // Initialise starting point
         let loc = loc::Loc {
@@ -58,15 +74,4 @@ impl Default for Robot {
             starting_y: 0,
         }
     }
-}
-
-pub fn get_total_explorable_size() -> i64 {
-    let size = Robot {
-        starting_x: 0,
-        starting_y: 0,
-        ..Default::default()
-    }
-    .explore_area_size();
-
-    return size;
 }
