@@ -1,11 +1,5 @@
-mod robot;
+extern crate robot;
 
 fn main() {
-    let size = robot::Robot {
-        starting_x: 0, starting_y: 0,
-        ..Default::default()
-    }
-    .explore_area_size();
-
-    println!("{}", size);
+    println!("Total Size = {}", robot::get_total_explorable_size())
 }
