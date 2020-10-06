@@ -13,12 +13,20 @@ pub struct Robot {
 
     // Keep track of how many locations we visit.
     pub count: i64,
+
+    // starting_loc
+    pub starting_x: i64,
+    pub starting_y: i64,
 }
 
 impl Robot {
     pub fn explore_area_size(&mut self) -> i64 {
         // Initialise starting point
-        let loc = loc::Loc { x: 0, y: 0 };
+        let loc = loc::Loc {
+            x: self.starting_x,
+            y: self.starting_y,
+        };
+
         // Push the starting point onto the stack
         self.loc_stack.push(loc);
         // Pop each element in stack to process.
@@ -46,6 +54,8 @@ impl Default for Robot {
             loc_visited: HashMap::new(),
             loc_stack: Vec::new(),
             count: 0,
+            starting_x: 0,
+            starting_y: 0,
         }
     }
 }
