@@ -118,8 +118,8 @@ pub mod loc {
     pub fn sum_num_digits(mut num: i64) -> i64 {
         let mut sum = 0;
         while num > 0 {
-            let m = num % 10;
-            sum = sum + m;
+            let mod_value = num % 10;
+            sum = sum + mod_value;
             num = num / 10;
         }
         return sum;
